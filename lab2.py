@@ -77,6 +77,30 @@ def action(block, destination, state):
 
     return state
 
+# Helper function just to print out the state on the board
+def print_state(state):
+    bottom_line = ["X", "X", "X"]
+    middle_line = ["X", "X", "X"]
+    top_line = ["X", "X", "X"]
+    blocks = list(state.keys())
+    for block in blocks:
+        if state[block] in floors:
+            bottom_line[floors.index(state[block])] = block
+    blocks = [block for block in blocks if block not in bottom_line]
+
+    for block in blocks:
+        if state[block] in bottom_line:
+            middle_line[floors.index(get_floor(block, state))] = block
+    blocks = [block for block in blocks if block not in middle_line]
+
+    for block in blocks:
+        if state[block] in middle_line:
+            top_line[floors.index(get_floor(block, state))] = block
+    blocks = [block for block in blocks if block not in top_line]
+
+    result_string = (" ".join(top_line) + "\n" + " ".join(middle_line) + "\n" + " ".join(bottom_line)
+                     + "\n" + "---------")
+    print(result_string)
 
 def bfs():
     queue = deque([(initial_state, [initial_state])])  # Start with initial state in the path
@@ -112,6 +136,8 @@ def bfs():
 
                     # Print out all paths for problem space graph
                     print(f"{current_state} --[move {block} to {destination}]--> {new_state}")
+                    print_state(current_state)
+                    print_state(new_state)
     return None
 
 solution = bfs()

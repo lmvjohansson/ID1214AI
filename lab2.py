@@ -142,3 +142,5 @@ def bfs():
 
 solution = bfs()
 print("Solution sequence:", solution)
+for state in solution:
+    print_state(state)

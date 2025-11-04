@@ -134,10 +134,11 @@ def bfs():
                         visited.add(str(new_state))
                         queue.append((new_state, new_state_path))
 
-                    # Print out all paths for problem space graph
-                    print(f"{current_state} --[move {block} to {destination}]--> {new_state}")
-                    print_state(current_state)
-                    print_state(new_state)
+                        # Print out all paths for problem space graph
+                        print(f"{current_state} --[move {block} to {destination}]--> {new_state}")
+                        print_state(current_state)
+                        print_state(new_state)
+
     return None
 
 solution = bfs()
